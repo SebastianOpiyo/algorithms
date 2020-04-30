@@ -6,11 +6,12 @@
 
 # Example 1:  (O(1))
 
-# if a > b:
-#     return True
-# else:
-#     return False
-#
+def test_greater(a, b):
+    if a > b:
+        return True
+    else:
+        return False
+
 
 # Example 2: (O(1))
 # A function to get the first element in a list.
