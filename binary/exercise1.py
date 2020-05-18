@@ -57,4 +57,3 @@ def print_binary_results():
 
 print_binary_results()
 
-
