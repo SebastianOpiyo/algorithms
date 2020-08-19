@@ -1,12 +1,18 @@
-# def Solution(N):
+# def solution(n):
+# Validate for the correct value of n
 # Convert the +v int into binary
-# zero_counter variable
+# determine max zero_counter
 # Check the max num of zeros within 1's by splitting the binary
 # return the max num if existing otherwise return 0
 
-# Solution 1: Best solution.
+# Solution 1: Best solution with 100% correctness.
 def solution(n):
-    # checks for the correct value of n
+    """
+        Determines the maximal 'binary gap' in an integer
+        :param n: a positive integer (between 1 and 2147483647)
+        :return: a count of the longest sequence of zeros in the binary representation of the integer
+    """
+    # Write your code in python3.6
     bin_limit = 2147483647
     if not isinstance(n, int):
         raise TypeError("Only positive integer values accepted!")
@@ -17,24 +23,11 @@ def solution(n):
     if n > bin_limit:
         raise ValueError("Integer beyond limit!")
 
-    # convert n to binary string
-    # and strip off any hanging zeros at the end of it.
     binary_num = f'{n:b}'.strip('0')
-
-    # get the list of zeros
     list_of_zeros = binary_num.split('1')
-    # Get the len of max zeros
     max_value = len(max(list_of_zeros))
-    # take care of lack of zero
     if max_value == '':
         return 0
     else:
         return max_value
 
-
-# # 2. Condensed and less readable.
-# def solution(n):
-#     return len(max(format(n, 'b').strip('0').split('1')))
-
-number = 2147483647
-print(solution(number))
