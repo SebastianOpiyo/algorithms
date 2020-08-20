@@ -13,10 +13,6 @@ def solution(a, k):
 """
 
 
-class EmptyArray(Exception):
-    pass
-
-
 def solution(a: list, k: int):
     """
         Shift index position of integers in cyclic rotation
@@ -25,7 +21,7 @@ def solution(a: list, k: int):
         :return: an array of reverser ints after k cycles
     """
     if not a:
-        raise EmptyArray
+        raise IndexError("Empty List!")
 
     if len(a) > 100:
         raise ValueError("Length beyond required limit!")
@@ -40,10 +36,10 @@ def solution(a: list, k: int):
     for i in range(k):
         last_value = new_list.pop()
         new_list.insert(0, last_value)
-    print(new_list)
+    return new_list
 
 
 # Helper Code
-array = [1, 3, 4, 6]
+array = [0, 0, 0]
 iterator_num = 3
-solution(array, iterator_num)
+print(solution(array, iterator_num))
