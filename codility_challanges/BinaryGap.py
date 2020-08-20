@@ -1,9 +1,18 @@
-# def solution(n):
-# Validate for the correct value of n
-# Convert the +v int into binary
-# determine max zero_counter
-# Check the max num of zeros within 1's by splitting the binary
-# return the max num if existing otherwise return 0
+#!/bin/python3
+# Author: Sebastian Opiyo
+# Date Created: Aug 19, 2020
+# Date Modified: Aug 20, 2020
+# Description: Algorithm challenges Lesson 1: Iterations.
+"""
+--> Algorithm flow
+def solution(n):
+    Validate for the correct value of n
+    Convert the +v int into binary
+    determine max zero_counter
+    Check the max num of zeros within 1's by splitting the binary
+    return the max num if existing otherwise return 0
+"""
+
 
 # Solution 1: Best solution with 100% correctness.
 def solution(n):
@@ -12,7 +21,6 @@ def solution(n):
         :param n: a positive integer (between 1 and 2147483647)
         :return: a count of the longest sequence of zeros in the binary representation of the integer
     """
-    # Write your code in python3.6
     bin_limit = 2147483647
     if not isinstance(n, int):
         raise TypeError("Only positive integer values accepted!")
@@ -31,3 +39,6 @@ def solution(n):
     else:
         return max_value
 
+
+# Helper code:
+print(solution(12098))
