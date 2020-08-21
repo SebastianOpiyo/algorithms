@@ -1,8 +1,8 @@
 #!/bin/python3
 # Author: Sebastian Opiyo
-# Date Created: Aug 19, 2020
+# Date Created: Aug 20, 2020
 # Date Modified: Aug 20, 2020
-# Description: Algorithm challenges Lesson 1: Arrays.
+# Description: Algorithm challenges Lesson 2: Arrays.
 """
 --> Algorithm Attempt flow
 def solution(a, k):
@@ -15,13 +15,16 @@ def solution(a, k):
 
 def solution(a: list, k: int):
     """
-        Shift index position of integers in cyclic rotation
+        Rotate an array to the right k steps.
         :param a: an array of integers
         :param k: number of times to shift to cycle the list
         :return: an array of reverser ints after k cycles
     """
-    if not a:
-        raise IndexError("Empty List!")
+    # if not a:
+    #     raise IndexError("Empty List!")
+
+    if not len(a):
+        return a
 
     if len(a) > 100:
         raise ValueError("Length beyond required limit!")
@@ -40,6 +43,6 @@ def solution(a: list, k: int):
 
 
 # Helper Code
-array = [0, 0, 0]
+array = [1, 2, 3, 4, 5]
 iterator_num = 3
 print(solution(array, iterator_num))
