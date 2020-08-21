@@ -2,7 +2,7 @@
 # Author: Sebastian Opiyo
 # Date Created: Aug 20, 2020
 # Date Modified: Aug 20, 2020
-# Description: Algorithm challenges Lesson 1: Arrays.
+# Description: Algorithm challenges Lesson 2: Arrays.
 """
 --> Algorithm Attempt flow
 def solution(a, k):
@@ -43,6 +43,6 @@ def solution(a: list, k: int):
 
 
 # Helper Code
-array = [0, 0, 0]
+array = [1, 2, 3, 4, 5]
 iterator_num = 3
 print(solution(array, iterator_num))
