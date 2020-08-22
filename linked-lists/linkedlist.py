@@ -14,7 +14,7 @@
 * An empty linked list is represented by a  NONE
 * It has a HEAD and a tail that points to NONE.
 *
-* WHY DO WE NEED LINKED LISTS
+* WHY DO WE NEED LINKED LISTS?
 * 1. They provide a way to assemble objects into a single entity i.e a collection
 """
 
