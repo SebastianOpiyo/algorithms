@@ -47,6 +47,10 @@ class TreeNode(object):
         return self.right_child and self.left_child
 
     def splice_out(self):
+        """This method is used to delete the successor,
+        by directly accessing the key in question.
+        We could use delete recursively, but then, that will consume extra time
+        researching the right key for deleting."""
         if self.is_leaf():
             if self.is_left_child():
                 self.parent.left_child = None
@@ -96,9 +100,6 @@ class TreeNode(object):
         if self.has_right_child():
             self.right_child.parent = self
 
-
-
-
     # def insert(self, node_value):
     #     if self._node == node_value:
     #         return False
@@ -123,33 +124,33 @@ class TreeNode(object):
     #     elif node_value > self._node and self._right:
     #         return self._right.find(node_value)
     #     return False
-    #
-    # def preorder(self, order_list: list):
-    #     order_list.append(self._node)
-    #     if self._left:
-    #         self._left.preorder(order_list)
-    #     if self._right:
-    #         self._right.preorder(order_list)
-    #     return order_list
-    #
-    # def postorder(self, order_list: list):
-    #     if self._left:
-    #         self._left.postorder(order_list)
-    #     if self._right:
-    #         self._right.postorder(order_list)
-    #     order_list.append(self._node)
-    #     return order_list
-    #
-    # def inorder(self, order_list: list):
-    #     if self._left:
-    #         self._left.inorder(order_list)
-    #     order_list.append(self._node)
-    #     if self._right:
-    #         self._right.inorder(order_list)
-    #     return order_list
+
+    def postorder(self, order_list: list):
+        if self.left_child:
+            self.left_child.postorder(order_list)
+        if self.right_child:
+            self.right_child.postorder(order_list)
+        order_list.append(self.payload)
+        return order_list
+
+    def inorder(self, order_list: list):
+        if self.left_child:
+            self.left_child.inorder(order_list)
+        order_list.append(self.payload)
+        if self.right_child:
+            self.right_child.inorder(order_list)
+        return order_list
+
+    def preorder(self, order_list: list):
+        order_list.append(self.payload)
+        if self.left_child:
+            self.left_child.preorder(order_list)
+        if self.right_child:
+            self.right_child.preorder(order_list)
+        return order_list
 
 
-class BST(object):
+class BST:
     """This a Binary Search Tree that has reference to the TreeNode.
     """
 
@@ -165,3 +166,147 @@ class BST(object):
 
     def __iter__(self):
         return self.root.__iter__()
+
+    def put(self, key, value):
+        if self.root:
+            self._put(key, value, self.root)
+        else:
+            self.root = TreeNode(key, value)
+        self.size = self.size + 1
+
+    def _put(self, key, value, current_node):
+        if key < current_node.key:
+            if current_node.has_left_child():
+                self._put(key, value, current_node.left_child)
+            else:
+                current_node.left_child = TreeNode(key, value, parent=current_node)
+        else:
+            if current_node.has_right_child():
+                self._put(key, value, current_node.right_child)
+            else:
+                current_node.right_child = TreeNode(key, value, parent=current_node)
+
+    def __setitem__(self, key, value):
+        self.put(key, value)
+
+    def get(self, key):
+        if self.root:
+            ret_val = self._get(key, self.root)
+            if ret_val:
+                return ret_val.payload
+            else:
+                return None
+
+    def _get(self, key, current_node):
+        if not current_node:
+            return None
+        elif current_node.key == key:
+            return current_node
+        elif key < current_node.key:
+            return self._get(key, current_node.left_child)
+        else:
+            return self._get(key, current_node.right_child)
+
+    def __getitem__(self, key):
+        return self.get(key)
+
+    def __contains__(self, key):
+        if self._get(key, self.root):
+            return True
+        else:
+            return False
+
+    def delete(self, key):
+        if self.size > 1:
+            to_remove_node = self._get(key, self.root)
+            if to_remove_node:
+                self.remove(to_remove_node)
+                self.size -= 1
+            else:
+                raise KeyError('Error, key not in tree.')
+        elif self.size == 1 and self.root.key == key:
+            self.root = None
+            self.size -= 1
+        else:
+            raise KeyError('Error, key not in tree')
+
+    def __delitem__(self, key):
+        self.delete(key)
+
+    @staticmethod
+    def remove(current_node):
+        """
+        :type current_node: the node we currently at during traversal
+        """
+        if current_node.is_leaf():  # leaf node
+            if current_node == current_node.parent.left_child:
+                current_node.parent.left_child = None
+            else:
+                current_node.parent.right_child = None
+        elif current_node.has_both_children():  # non-leaf node
+            successor = current_node.find_successor()
+            successor.splice_out()
+            current_node.key = successor.key
+            current_node.payload = successor.payload
+        else:  # node has one child
+            if current_node.has_left_child():
+                if current_node.is_left_child():
+                    current_node.left_child.parent = current_node.parent
+                    current_node.parent.left_child = current_node.left_child
+                elif current_node.is_right_child():
+                    current_node.left_child.parent = current_node.parent
+                    current_node.parent.right_child = current_node.left_child
+                else:
+                    current_node.replace_node_data(current_node.left_child.key,
+                                                   current_node.left_child.payload,
+                                                   current_node.left_child.left_child,
+                                                   current_node.left_child.right_child)
+            else:
+                if current_node.is_left_child():
+                    current_node.right_child.parent = current_node.parent
+                    current_node.parent.left_child = current_node.right_child
+                elif current_node.is_right_child():
+                    current_node.right_child.parent = current_node.parent
+                    current_node.parent.right_child = current_node.right_child
+                else:
+                    current_node.replace_node_data(current_node.right_child.key,
+                                                   current_node.right_child.payload,
+                                                   current_node.right_child.left_child,
+                                                   current_node.right_child.right_child)
+
+    # Return list of preorder elements
+    def preorder(self):
+        if self.root:
+            return self.root.preorder([])
+        else:
+            return []
+
+    # return list of postorder elements
+    def postorder(self):
+        if self.root:
+            return self.root.postorder([])
+        else:
+            return []
+
+    # return list of inorder elements
+    def inorder(self):
+        if self.root:
+            return self.root.inorder([])
+        else:
+            return []
+
+
+# Helper Code
+mytree = BST()
+mytree[3] = "Sugar"
+mytree[4] = "Mangoes"
+mytree[5] = "Oranges"
+mytree[8] = "Pineapples"
+mytree[0] = "Avocado"
+
+print(mytree[3])  # Sugar
+print(mytree[8])  # Pineapples
+print(mytree[4])  # Mangoes
+print(mytree.inorder())
+print(mytree.postorder())
+print(mytree.preorder())
