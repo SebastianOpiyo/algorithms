@@ -1,7 +1,7 @@
 #!/bin/python3
 # Author: Sebastian Opiyo
 # Date Created: Aug 22, 2020
-# Date Modified: Aug 22, 2020
+# Date Modified: Aug 24, 2020
 # Descr: Implementing BST
 # Acknowledgement: runestone.academy
 
@@ -99,31 +99,6 @@ class TreeNode(object):
             self.left_child.parent = self
         if self.has_right_child():
             self.right_child.parent = self
-
-    # def insert(self, node_value):
-    #     if self._node == node_value:
-    #         return False
-    #     elif node_value < self._node:
-    #         if self._left:
-    #             return self._left.insert(node_value)
-    #         else:
-    #             self._left = TreeNode(node_value)
-    #             return True
-    #     else:
-    #         if self._right:
-    #             return self._right.insert(node_value)
-    #         else:
-    #             self._right = TreeNode(node_value)
-    #             return True
-    #
-    # def find(self, node_value):
-    #     if self._node == node_value:
-    #         return True
-    #     elif node_value < self._node and self._left:
-    #         return self._left.find(node_value)
-    #     elif node_value > self._node and self._right:
-    #         return self._right.find(node_value)
-    #     return False
 
     def postorder(self, order_list: list):
         if self.left_child:
@@ -274,6 +249,11 @@ class BST:
                                                    current_node.right_child.left_child,
                                                    current_node.right_child.right_child)
 
+    # create a bst from a given list.
+    def create_bst_from_list(self, bst_list: list):
+        for item in bst_list:
+            self.put(bst_list.index(item), item)
+
     # Return list of preorder elements
     def preorder(self):
         if self.root:
@@ -298,15 +278,21 @@ class BST:
 
 # Helper Code
 mytree = BST()
-mytree[3] = "Sugar"
-mytree[4] = "Mangoes"
-mytree[5] = "Oranges"
-mytree[8] = "Pineapples"
-mytree[0] = "Avocado"
+# mytree[3] = "Sugar"
+# mytree[4] = "Mangoes"
+# mytree[5] = "Oranges"
+# mytree[8] = "Pineapples"
+# mytree[0] = "Avocado"
+my_list = [1, 2, 4, 6, 12, 45]
+my_second_list = [20, 9, 25, 5, 12, 11, 14, 18, 19]
 
-print(mytree[3])  # Sugar
-print(mytree[8])  # Pineapples
-print(mytree[4])  # Mangoes
+# print(mytree.create_bst_from_list(my_list))
+print(mytree.create_bst_from_list(my_second_list))
+# print(mytree[3])  # Sugar
+# print(mytree[8])  # Pineapples
+# print(mytree[4])  # Mangoes
+
 print(mytree.inorder())
 print(mytree.postorder())
 print(mytree.preorder())
+
