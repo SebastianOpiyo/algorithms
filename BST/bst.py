@@ -50,7 +50,8 @@ class TreeNode(object):
         """This method is used to delete the successor,
         by directly accessing the key in question.
         We could use delete recursively, but then, that will consume extra time
-        researching the right key for deleting."""
+        researching the right key for deleting.
+        """
         if self.is_leaf():
             if self.is_left_child():
                 self.parent.left_child = None
@@ -249,11 +250,6 @@ class BST:
                                                    current_node.right_child.left_child,
                                                    current_node.right_child.right_child)
 
-    # create a bst from a given list.
-    def create_bst_from_list(self, bst_list: list):
-        for item in bst_list:
-            self.put(bst_list.index(item), item)
-
     # Return list of preorder elements
     def preorder(self):
         if self.root:
@@ -274,25 +270,29 @@ class BST:
             return self.root.inorder([])
         else:
             return []
+    
+    # create a bst from a given list.
+    def create_bst_from_list(self, bst_list: list):
+        for item in bst_list:
+            self.put(item, bst_list.index(item))
 
 
 # Helper Code
-mytree = BST()
+# mytree = BST()
 # mytree[3] = "Sugar"
 # mytree[4] = "Mangoes"
 # mytree[5] = "Oranges"
 # mytree[8] = "Pineapples"
 # mytree[0] = "Avocado"
-my_list = [1, 2, 4, 6, 12, 45]
-my_second_list = [20, 9, 25, 5, 12, 11, 14, 18, 19]
+# my_list = [1, 2, 4, 6, 12, 45]
+# my_second_list = [20, 9, 25, 5, 12, 11, 14, 18, 19]
 
 # print(mytree.create_bst_from_list(my_list))
-print(mytree.create_bst_from_list(my_second_list))
+# print(mytree.create_bst_from_list(my_second_list))
 # print(mytree[3])  # Sugar
 # print(mytree[8])  # Pineapples
 # print(mytree[4])  # Mangoes
 
-print(mytree.inorder())
-print(mytree.postorder())
-print(mytree.preorder())
-
+# print(mytree.inorder())
+# print(mytree.postorder())
+# print(mytree.preorder())
