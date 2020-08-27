@@ -18,18 +18,20 @@
 * 1. They provide a way to assemble objects into a single entity i.e a collection
 """
 
+
 class Node:
 
     def __init__(self, cargo=None, next=None):
         self.cargo = cargo
-        self.next  = next
-    
+        self.next = next
+
     def __str__(self):
         return str(self.cargo)
 
-node1=Node("test1")
-node2=Node("test2")
-node3=Node("test3")
+
+node1 = Node("test1")
+node2 = Node("test2")
+node3 = Node("test3")
 
 # print("The nodes below aren't linked at all.")
 # print(node1)
@@ -50,6 +52,7 @@ node3=Node("test3")
 node1.next = node2
 node2.next = node3
 
+
 # print()
 # print("Lets call a linked list here >>>>node1.next")
 # print(node1.next)
@@ -64,7 +67,10 @@ def print_list(node):
         node = node.next
     print('None')
 
+
 print("Print from HEAD to TAIL")
+
+
 # print_list(node1)
 
 def print_backward(node):
@@ -75,6 +81,7 @@ def print_backward(node):
     print_backward(tail)
     print(head, end="-->")
 
+
 # print("Print from TAIL to HEAD")
 # print_backward(node1)
 # print()
@@ -83,14 +90,16 @@ def print_backward(node):
 def print_backward_nicely(list):
     # Uses print_backward as a helper func
     print("[", end=" ")
-    print_backward(list) 
+    print_backward(list)
     print(" None]")
+
 
 print_backward_nicely(node1)
 
+
 def remove_second(list):
     if list is None: return
-    first  = list
+    first = list
     second = list.next
     # Make the first node ref to the 3rd
     first.next = second.next
