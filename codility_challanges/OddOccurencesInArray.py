@@ -7,19 +7,42 @@
 """
 --> Algorithm Attempt flow
 def solution(a):
-    Validate len a and k values: should be integers from 0..100
-    pop the last element in the array and insert as the first
-    do that k times
-    return final array after k iterations.
+    Validate for a non-empty list with a max length of 1000000
+    validate for int values only
+
 """
 
+max_length = 1000000
 
-def solution(a: list, k: int):
-    """
-        Find values that occure in odd numbers of elements.
-        :param a: an array of integers
-        :param k: number of times to shift to cycle the list
-        :return: an array of reverser ints after k cycles
-    """
 
-    pass
+def solution(a: list):
+    # write your code in Python 3.6
+    # checking whether a is an array of integers.
+    if not len(a) > 1:
+        raise IndexError("Empty list, need a list with odd number of elements")
+
+    if len(a) > max_length:
+        raise ValueError("Error, length beyond required threshold!")
+    # We don't need this because the list is checked at the parameter entry level.
+    # if not isinstance(a, list):
+    #     raise TypeError("Input must be a list of integers")
+
+    for i in a:
+        if not isinstance(i, int):
+            raise TypeError("Error, only integer values accepted!")
+        if i not in range(1000000):
+            raise ValueError("Error, value out of range!")
+
+    odd_elem_counter = {}
+
+    for elem in a:
+        if elem in odd_elem_counter:
+            del odd_elem_counter[elem]
+        else:
+            odd_elem_counter[elem] = True
+    # returns a list, but that is not really needed ...just the value.
+    return [print(key, value) for key, value in odd_elem_counter.items()]
+
+
+array = [9, 3, 9, 3, 9, 7, 9]
+solution(array)
