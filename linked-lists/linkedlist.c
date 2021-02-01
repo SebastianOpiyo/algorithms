@@ -46,9 +46,17 @@ int main ()
     // Initialize the new memory
     link -> next =0;
     link -> x = 42;
-    link -> x = 50;
-    printf("Our node is %d \n", root->x);
-    printf("Our next node is %d", link->x);
+    //link -> x = 50;
+    // printf("Our node is %d \n", root->x);
+    // printf("Our next node is %d", link->x);
+
+    // Print the contents of a linked list.
+    link = root;
+    while (link != NULL)
+    {
+        printf("%d\n", link -> x);
+        link = link -> next;
+    }
     return 0;
 }
 
