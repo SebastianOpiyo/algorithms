@@ -11,10 +11,13 @@ void recursion (int count)
     // Otherwise, it will result to a stack overflow / segmentation fault.
     if (count < 10 )
     {
+        // print function call before recursion begins
+        printf("The count before recursion call is: %d\n", count);
         recursion(count + 1);
         // This will print from 9, decreamenting to 1.
         // Why ? Because what we have in place is a stack data structure.
-        printf("The count is %d\n", count);
+        // Print function call result after occurance of recursion.
+        printf("The count after recursion call is: %d\n", count);
     }
 }
 
