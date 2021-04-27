@@ -48,3 +48,4 @@ int main() {
 
 // Reading resources.
 // https://www.geeksforgeeks.org/difference-between-contiguous-and-noncontiguous-memory-allocation/#:~:text=Contiguous%20Memory%20Allocation%20%3A,process%20or%20file%20needing%20it.&text=We%20can%20implement%2Fachieve%20contiguous,partitions%20into%20fixed%20size%20partitions.
+// https://people.engr.ncsu.edu/efg/210/s99/Notes/LinkedList.1.html
