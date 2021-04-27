@@ -1,64 +1,50 @@
+// Linked list implementation in C
+
 #include <stdio.h>
 #include <stdlib.h>
 
-
+// Creating a node
 struct node {
-    int x;
-    struct node *next;
+  int value;
+  struct node *next;
 };
 
-int main ()
-{
-    // The unchanging first node.
-    struct node *root;
-
-    // A link that will point to each node during traversal.
-    struct node *link;
-
-    // Root points to a node struct
-    root = malloc(sizeof(struct node));
-
-    // The node root points to has its next pointer equal to null pointer
-    root -> next = 0;
-
-    // By using the -> operator, you can modify what the node, a pointer, (root in this case) points to.
-    root -> x = 5;
-    link = root;
-
-    if (link != 0 )
-    {
-        while ( link -> next != 0)
-        {
-            link = link -> next;
-        }
-    }
-    // Else, we create a node at the end of the list
-    link -> next = malloc(sizeof(struct node ));
-    link = link -> next;
-    // Get to the null pointer or end, which is 0
-    // printf("Next link %d\n", link->next);
-
-    if (link == 0)
-    {
-        printf("Out of memory");
-        return 0;
-    }
-    // Initialize the new memory
-    link -> next =0;
-    link -> x = 42;
-    //link -> x = 50;
-    // printf("Our node is %d \n", root->x);
-    // printf("Our next node is %d", link->x);
-
-    // Print the contents of a linked list.
-    link = root;
-    while (link != NULL)
-    {
-        printf("%d\n", link -> x);
-        link = link -> next;
-    }
-    return 0;
+// print the linked list value
+// This performs traversal or search.
+void printLinkedlist(struct node *p) {
+  while (p != NULL) {
+    printf("%d ", p->value);
+    p = p->next;
+  }
 }
 
+int main() {
+  // Initialize nodes
+  struct node *head;
+  struct node *one = NULL;
+  struct node *two = NULL;
+  struct node *three = NULL;
+
+  // Allocate memory
+  one = malloc(sizeof(struct node));
+  two = malloc(sizeof(struct node));
+  three = malloc(sizeof(struct node));
+
+  // Assign value values (dereferencing)
+  one->value = 1; // we could as well use (*one).value or (*one).next
+  two->value = 2;
+  three->value = 3;
+
+  // Connect nodes
+  one->next = two;
+  two->next = three;
+  three->next = NULL;
+
+  // printing node-value
+  head = one;
+  printLinkedlist(head);
+}// Linked list implementation in C
 
 
+// Reading resources.
+// https://www.geeksforgeeks.org/difference-between-contiguous-and-noncontiguous-memory-allocation/#:~:text=Contiguous%20Memory%20Allocation%20%3A,process%20or%20file%20needing%20it.&text=We%20can%20implement%2Fachieve%20contiguous,partitions%20into%20fixed%20size%20partitions.
