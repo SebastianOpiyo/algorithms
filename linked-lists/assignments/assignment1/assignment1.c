@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /*
-*Use logical steps and the FlowChart to write a Program
+* ASSIGNMENT 1: Use logical steps and the FlowChart to write a Program
 */
 
 // We define a node of "int" data type and "next" node address
