@@ -1,9 +1,10 @@
 #include <stdio.h>
+#include<stdbool.h> 
 #include <stdlib.h>
+#include <time.h>
 
 /*
-* ASSIGNMENT2 : Design from the flowchart program to implement the insertion of 
-* a new element into an existing list.
+* ASSIGNMENT3 : Linear/Sequential search algorithm
 */
 
 // We define a node of "int" data type and "next" node address
@@ -15,18 +16,25 @@ struct Node {
 struct Node* head;   // This a global pointer variable, that can be accessed anywhere.
 
 // Node functions
+double duration;
+clock_t start, stop;
+bool found;
+
 void InsertAtAnyPosition(int data, int position);
+void LinearSearch(int data);
 void PrintList();
+void calculateTime(int start, int stop);
 
 int main() {
     head = NULL; //we initiate an empty list.
-    printf("Insert Nodes at nth position: ");
-    // Could improve this so that it takes input from the command prompt.
+    printf("Linear Search of Nodes at nth position: ");
     printf("\nPlease enter data and position: ");
     int data, position;
-    //scanf("\ndata: %d \nPosition: %d", &data, &position);
 
     while(&data && &position){
+        if(data == 0){
+            printf("End of list creation!");
+        };
         printf("\nEnter Data: ");
         scanf("%d", &data);
         printf("Enter Position: ");
@@ -35,13 +43,10 @@ int main() {
         PrintList();
     }
     printf("\nEntire List Print!\n");
-    /*
-    InsertAtAnyPosition(2,1);
-    InsertAtAnyPosition(10,2);
-    InsertAtAnyPosition(5,3);
-    InsertAtAnyPosition(6,2);
-    */
     PrintList();
+    printf("\nEnter Data to Search: \n");
+    scanf("%d", &data);
+    LinearSearch(data);
 }
 
 void InsertAtAnyPosition(int data, int position){
@@ -74,3 +79,28 @@ void PrintList(){
     }
     printf("%d", NULL); // Ensures the last node points to null for illustration reasons.
 }
+
+void LinearSearch(int data){
+    //Search for the given data in a linked list.
+    struct Node* temp1 = head;
+    start = clock();
+    printf("\nSearching the list!\n");
+        while(temp1 != NULL){
+            if (temp1->data == data){
+                found = true;
+                printf("Item found in list!");
+                break;
+            };
+            printf("Moving to the next node...");
+            temp1 = temp1->next;
+    };
+    stop = clock();
+    calculateTime(start, stop);
+};
+
+void calculateTime(int start, int stop){
+    // calculate the time it takes for linear search.
+    duration = ( double ) ( stop - start ) / CLOCKS_PER_SEC;
+    printf("Time taken for the linear search is: %.2lf\n", duration);
+
+};
