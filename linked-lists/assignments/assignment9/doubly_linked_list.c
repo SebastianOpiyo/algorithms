@@ -11,8 +11,8 @@ struct Node {
    struct Node* prev;
 };
 
-# Create link that points to the first LINK and last LINK
-# First Link
+// Create link that points to the first LINK and last LINK
+// First Link
 struct Node* head; // Global variable pointer to head node.
 
 // For the sake of having DRY code
@@ -45,7 +45,8 @@ void insertAtTail(int x){
 		head = newNode;
 		return;
 	}
-	while(tempNode->next != NULL) temp = tempNode->next; // Go To last Node
+	while(tempNode->next != NULL)
+    temp = tempNode->next; // Go To last Node
 	tempNode->next = newNode;
 	newNode->prev = temp;
 
@@ -78,4 +79,5 @@ void PrintList(){
         temp = temp->next;
     printf("%d", NULL);
     printf("\n");
-}
+};
+};
