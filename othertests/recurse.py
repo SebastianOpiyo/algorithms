@@ -6,3 +6,5 @@ def recurse(level):
 
 def not_called():
     print('This function is never called.')
+
+print(recurse(8))
