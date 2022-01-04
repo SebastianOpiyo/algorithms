@@ -18,19 +18,46 @@ with O(log n) runtime complexity.
 
 
 # SOLUTION
+# - This problem can be solved either recursively or iteratively.
 
-def find_middle(input_list: list):
-    middle = float(len(input_list)) / 2
-    if middle % 2 != 0:
-        return input_list[int(middle - .5)]
-    else:
-        return input_list[int(middle)], input_list[int(middle - 1)]
 
 
 class Solution:
+    """A Binary Search class with recursive and iterative solutions."""
+
+    def __init__(self, nums:list[int], target:int):
+        self.nums = nums
+        self.target = target
+
+    # Recursive solution.
+    def recursive_solution(self, right:int, left:int):
+        # left should always be less or equal to the right
+        if left > right:
+            return False
+        # We find the mid
+        else:
+            mid = (left + right)/2
+            if self.target == self.nums[mid]:
+                return mid
+            else:
+                # check if in the left or right half
+                pass
+
+    # Iterative solution.
+    def iterative_solution(self):
+        pass
+
+    def find_middle(input_list: list):
+        middle = float(len(input_list)) / 2
+        if middle % 2 != 0:
+            return input_list[int(middle - .5)]
+        else:
+            return input_list[int(middle)], input_list[int(middle - 1)]
+
     def search(self, nums: list[int], target: int) -> int:
         pass
 
 
-int_list = [-1, 0, 3, 5, 9, 12, 15]
-print(find_middle(int_list))
+# TEST RUN
+# int_list = [-1, 0, 3, 5, 9, 12, 15]
+# print(find_middle(int_list))
