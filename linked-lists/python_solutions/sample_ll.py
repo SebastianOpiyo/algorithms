@@ -1,66 +1,47 @@
 class Node:
-    def __init__(self, data=None, next_node=None):
-        self.data = data
+    def __init__(self, new_data=None, next_node=None):
+        self.data = new_data
         self.next_node = next_node
-        self.count = 0
-        
-    def set_next_node(self, next_node):
-        """Set next node."""
-        self.next_node = next_node
-    
-    def set_data(self, data):
-        """Set node data."""
-        self.data = data
-    
-    def set_counter(self):
-        """Increament the counter."""
-        self.count += 1 
+        #self.counter = 0
 
-    def decreament_counter(self):
-        """Decreament the counter when node is deleted."""
-        self.count -= 1
+    # define getter and setter
+    def set_data(self, new_data):
+        self.data = new_data
     
-    def get_nextnode(self):
-        """Return the next node in the list."""
-        return self.next_node
+    def set_next_node(self, next_node):
+        self.next_node = next_node
     
     def get_data(self):
-        """Get node data."""
         return self.data
     
-    def get_node_count(self):
-        """Get the number of nodes."""
-        return self.count
+    def get_next_node(self):
+        return self.next_node
     
-    def __str__(self) -> str:
+    def __str__(self):
         return str(self.data)
 
+# test
+# Creating
+node_1 = Node("Orange")
+node_2 = Node("Mangoes")
+node_3 = Node("Bananas")
+node_4 = Node("Lemon")
+# print(node_1, node_2, node_3, node_4)
 
-# This nodes are not linked
-node_1 = Node("mango")
-node_2 = Node("Orange")
-# print(node_1, node_2)
+# Linking nodes
+node_1.set_next_node(node_2)
+node_2.set_next_node(node_3)
+node_3.set_next_node(node_4)
 
-# To link them
-node_1.next_node = node_2
-print(node_2.next_node)
+
+def print_linked_list(node:Node):
+    while node is not None:
+        print(node.get_data(), end="-->")
+        node = node.get_next_node()
+    print(None)        
+
+print_linked_list(node=node_1)
 
 
 class LinkedList:
-    def __init__(self) -> None:
-        self.head = None
-        self.tail = None
-    
-    def is_empty(self):
-        '''Checks if the LL is empty'''
-        return self.head is None
-
-    def add(self, node):
-        '''Add Node to the LinkedList'''
-        self.add(Node(node))
-        if LinkedList.is_empty:
-            self.head = node
-            self.tail = node.nex
-
-
-
+    pass
