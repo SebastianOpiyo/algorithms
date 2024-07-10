@@ -62,6 +62,7 @@ node2.next = node3
 
 def print_list(node):
     # We are printing from head to tail
+    print("LIST from HEAD to TAIL")
     while node is not None:
         print(node, end="--> ")
         node = node.next
