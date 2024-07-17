@@ -13,6 +13,6 @@ class Solution:
             else:
                 pnt_1 += 1
         return max_size
-        
+    
 new_string = Solution()
 print(new_string.lengthOfLongestSubstring("abcabcbb"))
