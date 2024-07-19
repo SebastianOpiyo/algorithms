@@ -20,28 +20,61 @@ class Node:
     def __str__(self):
         return str(self.data)
 
-# test
-# Creating
-node_1 = Node("Orange")
-node_2 = Node("Mangoes")
-node_3 = Node("Bananas")
-node_4 = Node("Lemon")
-# print(node_1, node_2, node_3, node_4)
-
-# Linking nodes
-node_1.set_next_node(node_2)
-node_2.set_next_node(node_3)
-node_3.set_next_node(node_4)
-
 
 def print_linked_list(node:Node):
     while node is not None:
         print(node.get_data(), end="-->")
-        node = node.get_next_node()
-    print(None)        
+        node = node.get_next_node()       
 
-print_linked_list(node=node_1)
+# print_linked_list(node=node_1)
 
 
-class LinkedList:
-    pass
+class UnorderedLinkedList:
+    
+    def __init__(self) -> None:
+        self.head = None
+        # self._tail = None
+    
+    def is_empty(self):
+        return self.head is None
+    
+    def add(self, data):
+        '''Add Node to the LinkedList'''
+        temp = Node(data)
+        temp.set_next_node(self.head)
+        self.head = temp
+        
+    def get_list_size(self):
+        '''Get the number of nodes in the linked list'''
+        count = 0
+        current = self.head
+        while current is not None:
+            count += 1
+            current = current.get_next_node()
+        return count
+    
+    
+    def search_item(self, item):
+        found = False
+        current = self.head
+        
+        while current is not None and not found:
+            if current.get_data() == item:
+                found = True
+            else:
+                current = current.get_next_node()
+            return found
+    
+    def remove_item(self, item):
+        pass
+
+
+
+# Test
+my_list = UnorderedLinkedList()
+# print(my_list.is_empty())
+my_list.add("Orange")
+my_list.add("Mango")
+# print(my_list.is_empty())
+# print(my_list.get_list_size())
+print(my_list.search_item("Mango"))

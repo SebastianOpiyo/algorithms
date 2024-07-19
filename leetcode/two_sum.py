@@ -22,7 +22,6 @@ class Solution:
         pnt_1 = 0
         pnt_2 = len(nums) -1
         while pnt_1 != pnt_2:
-            print(pnt_1, pnt_2)
             _sum = nums[pnt_1] + nums[pnt_2]
             if _sum == target:
                 return [pnt_1, pnt_2]
