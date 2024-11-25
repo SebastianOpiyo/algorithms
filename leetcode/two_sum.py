@@ -33,5 +33,34 @@ class Solution:
         return
 
 #test
-my_class = Solution()
-my_class.twoSum([2,7,11,15], target=9)
+# my_class = Solution()
+# my_class.twoSum([2,7,11,15], target=9)
+
+
+def list_hasmap(lst:list, target:int) -> list:
+    hashmap = {}
+    for i, val in enumerate(lst):
+        if val not in hashmap:
+            hashmap[i] = val
+         # Check if there exists two numbers that add up to target
+        rem = target - val
+        if rem in hashmap.values():
+            for k, v in hashmap.items():
+                if v == rem:
+                    return [k,i]
+            return []
+
+print(list_hasmap([2,7,11,15], target=9))
+
+
+# Previous Solution
+class Solution:
+    def twoSum(self, nums: list, target: int) -> list:
+        existing = {}
+        for i in range(len(nums)):
+            required_num = target - nums[i]
+            if required_num in existing:
+                return [i, existing[required_num]]
+            else:
+                existing[nums[i]] = i
+        return []
