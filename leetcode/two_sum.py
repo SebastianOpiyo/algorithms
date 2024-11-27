@@ -16,39 +16,16 @@ until we get the target sum and them return the indices of the integers in the l
 """
 
 # Code Solution
-class Solution:
 
-    def twoSum(self, nums: list[int], target: int) -> list[int]:
-        pnt_1 = 0
-        pnt_2 = len(nums) -1
-        while pnt_1 != pnt_2:
-            print(pnt_1, pnt_2)
-            _sum = nums[pnt_1] + nums[pnt_2]
-            if _sum == target:
-                return [pnt_1, pnt_2]
-            elif _sum > target:
-                pnt_2 = pnt_2 - 1
-            else:
-                pnt_1 = pnt_1 + 1
-        return
-
-#test
-# my_class = Solution()
-# my_class.twoSum([2,7,11,15], target=9)
-
-
-def list_hasmap(lst:list, target:int) -> list:
+def list_hasmap(nums:list, target:int) -> list:
     hashmap = {}
-    for i, val in enumerate(lst):
-        if val not in hashmap:
-            hashmap[i] = val
-         # Check if there exists two numbers that add up to target
+    # Check if there exists two numbers that add up to target
+    for i, val in enumerate(nums):
         rem = target - val
-        if rem in hashmap.values():
-            for k, v in hashmap.items():
-                if v == rem:
-                    return [k,i]
-            return []
+        if rem in hashmap[val]:
+            return [hashmap[val],i]
+        hashmap[val] = i
+    return []
 
 print(list_hasmap([2,7,11,15], target=9))
 
@@ -56,11 +33,11 @@ print(list_hasmap([2,7,11,15], target=9))
 # Previous Solution
 class Solution:
     def twoSum(self, nums: list, target: int) -> list:
-        existing = {}
+        hashmap = {val:i for i, val  in enumerate(nums)}
         for i in range(len(nums)):
-            required_num = target - nums[i]
-            if required_num in existing:
-                return [i, existing[required_num]]
+            rem = target - nums[i]
+            if rem in hashmap and hashmap[rem] != i:
+                return [hashmap[rem], i]
             else:
-                existing[nums[i]] = i
+                hashmap[rem] =i
         return []
