@@ -19,6 +19,9 @@
 """
 
 
+from numpy import add
+
+
 class Node:
 
     def __init__(self, cargo=None, next=None):
@@ -52,14 +55,6 @@ node3 = Node("test3")
 node1.next = node2
 node2.next = node3
 
-
-# print()
-# print("Lets call a linked list here >>>>node1.next")
-# print(node1.next)
-# print(node2.next)
-# print(node3.next)
-# node3 refs to None, hence at the end of the linked list
-
 def print_list(node):
     # We are printing from head to tail
     print("LIST from HEAD to TAIL")
@@ -67,10 +62,6 @@ def print_list(node):
         print(node, end="--> ")
         node = node.next
     print('None')
-
-
-print("Print from HEAD to TAIL")
-
 
 # print_list(node1)
 
@@ -83,19 +74,12 @@ def print_backward(node):
     print(head, end="-->")
 
 
-# print("Print from TAIL to HEAD")
-# print_backward(node1)
-# print()
-
 # Enhancement od print_backwards with a wrapper func
 def print_backward_nicely(list):
     # Uses print_backward as a helper func
     print("[", end=" ")
     print_backward(list)
     print(" None]")
-
-
-print_backward_nicely(node1)
 
 
 def remove_second(list):
@@ -109,9 +93,22 @@ def remove_second(list):
     return second
 
 # TODO: Add node to the beginning. 
-# TODO: Refine the algorithm
+def add_node_beginning(llist, new_node):
+    # we need to make sure the llist is not empty
+    if llist is None:
+        print("Linked list is empy, new node is Head")
+        return new_node
+    
+    new_node.next = llist
+    print("New head is:", new_node)
+    print(print_list(new_node))
+    return new_node
 
-# print_list(node1)
-# remove = remove_second(node1)
-# print_list(remove)
-# print_list(node1)
+# Add Node at the end of the linked list
+def add_node_end(llist, new_node):
+    ...
+
+
+
+if __name__ == "__main__":
+    add_node_beginning(node1, Node("new_head"))
