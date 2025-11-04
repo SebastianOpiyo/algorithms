@@ -30,16 +30,25 @@ class Node:
 
     def __str__(self):
         return str(self.cargo)
+    
+    # Print Linked list
+    def print_list(self, node):
+        # We are printing from head to tail
+        print("LIST from HEAD to TAIL")
+        while node is not None:
+            print(node, end="--> ")
+            node = node.next
+        print('None')
+    
+    def print_backward(self, node):
+        """ Print linked list from TAIL to HEAD recursively """
+        if node is None: return
+        head = node
+        tail = node.next
+        self.print_backward(tail)
+        print(head, end="-->")
 
 
-node1 = Node("test1")
-node2 = Node("test2")
-node3 = Node("test3")
-
-# print("The nodes below aren't linked at all.")
-# print(node1)
-# print(node2)
-# print(node3)
 
 """
  We don't have linked lists yet, what we have after calling node1 - node3 is
@@ -50,29 +59,8 @@ node3 = Node("test3")
  * cargo --> 3
    next --> None
 *
-* To link the nodes we have to call next.
+* To link the nodes we have to call next and point it tot the next node
 """
-node1.next = node2
-node2.next = node3
-
-def print_list(node):
-    # We are printing from head to tail
-    print("LIST from HEAD to TAIL")
-    while node is not None:
-        print(node, end="--> ")
-        node = node.next
-    print('None')
-
-# print_list(node1)
-
-def print_backward(node):
-    # We are printing from tail to head in reverse
-    if node is None: return
-    head = node
-    tail = node.next
-    print_backward(tail)
-    print(head, end="-->")
-
 
 # Enhancement od print_backwards with a wrapper func
 def print_backward_nicely(list):
@@ -92,7 +80,6 @@ def remove_second(list):
     second.next = None
     return second
 
-# TODO: Add node to the beginning. 
 def add_node_beginning(llist, new_node):
     # we need to make sure the llist is not empty
     if llist is None:
@@ -101,14 +88,29 @@ def add_node_beginning(llist, new_node):
     
     new_node.next = llist
     print("New head is:", new_node)
-    print(print_list(new_node))
+    print(llist.print_list(new_node))
     return new_node
 
 # Add Node at the end of the linked list
 def add_node_end(llist, new_node):
-    ...
+    if llist is None:
+        print("Linked list is empty, new node is Head")
+        return new_node
+    current = llist
+    while current.next is not None:
+        current = current.next
+        print("Current node is:", current)
+    current.next = new_node
+    print("Added new node at the end:", new_node)
+    return llist
 
 
 
 if __name__ == "__main__":
+    node1 = Node("test1")
+    node2 = Node("test2")
+    node3 = Node("test3")
+    # Linking the nodes
+    node1.next = node2
+    node2.next = node3
     add_node_beginning(node1, Node("new_head"))
