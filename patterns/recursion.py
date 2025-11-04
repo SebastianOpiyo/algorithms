@@ -7,11 +7,11 @@ print(sys.setrecursionlimit(3000))
 # TODO: Fix RecursionError: maximum recursion depth exceeded
 def add_numbers(n: int) -> int:
     # Set the base case 
-    if n > 200:
-        return f"Number greater than 200 reached:  {str(n)}"
+    if n >= 200:
+        return 0
 
     else:
-        print(f"Adding {str(n)}")
+        print(f"Adding {n}")
         return n + add_numbers(n+1)
 
 
