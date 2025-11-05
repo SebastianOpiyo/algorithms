@@ -1,10 +1,9 @@
 import sys
 
 
-print(sys.setrecursionlimit(3000))
-# Simple Recursive funtion to demonstrate recursion
+#sys.setrecursionlimit(3000)
 
-# TODO: Fix RecursionError: maximum recursion depth exceeded
+
 def add_numbers(n: int) -> int:
     # Set the base case 
     if n >= 200:
