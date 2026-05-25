@@ -1,10 +1,9 @@
-def recurse(level):
-    print('recurse(%s)', level)
-    if level:
+def recurse(level:int):
+    print(f'recurse {level}')
+    if level: # Condition to stop recursion
         recurse(level - 1)
     return
 
-def not_called():
-    print('This function is never called.')
 
+# Test
 print(recurse(8))
