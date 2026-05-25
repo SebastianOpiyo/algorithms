@@ -11,7 +11,7 @@
 - Will the collection grow or not
 
 * Answering this qsns is important because some algos like merge sort may need a lot of space to run
-* On the other hand insertion sort is not the fasted, yet requires less memory resource to run
+* On the other hand insertion sort is not the fastest, yet requires less memory resource to run
 
 
 # Some of the common algorithms include:
@@ -59,3 +59,19 @@
   element in its correct position.
 - Sorts in place, so memory usage is low
 - Average runtime is O(n^2)
+
+
+# Patterns For ADS
+1. Sliding Window
+2. Two Pointer
+3. Binary Search
+4. BFS (Queue, Best for shortest path)
+5. DFS (Stack, Recursion, Best for exp)
+6. Priority Queue (Top K)
+7. Dynamic Programming(Top-down vs bottom-up approach, memozation)
+8. Backtracking
+9. Heap
+10. Divide & Conquer
+11. Trie
+12. Union Find
+13. Greedy
