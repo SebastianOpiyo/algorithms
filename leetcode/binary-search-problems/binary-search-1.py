@@ -17,6 +17,22 @@ with O(log n) runtime complexity.
 """
 
 
+
+
+def binary_search_bruteforce(nums:list[int], target:int) -> int:
+    """A brute force implementation of binary search."""
+    print(range(len(nums)))
+    # for i in range(len(nums)):
+    #     print(i)
+
+
+# binary_search_bruteforce([-1,0,3,5,9,12], 9)
+
+
+
+
+
+
 # SOLUTION
 # - This problem can be solved either recursively or iteratively.
 
@@ -57,6 +73,10 @@ class Solution:
     def search(self, nums: list[int], target: int) -> int:
         pass
 
+
+
+if __name__ == "__main__":
+    binary_search_bruteforce([-1,0,3,5,9,12], 9)
 
 # TEST RUN
 # int_list = [-1, 0, 3, 5, 9, 12, 15]
