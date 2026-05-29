@@ -42,12 +42,14 @@ class Node:
     def __init__(self, data):
         self.data = data
         self.next = None
+        
 
 class LinkedList:
     """Class to create a linked list and add nodes to it"""
     
     def __init__(self, mylist):
         self.head = None
+        self.tail = None
         self.mylist = mylist
         self.create_linked_list_from_list()
 
@@ -63,6 +65,7 @@ class LinkedList:
 
         if self.head is None:
             self.head = new_node
+            return
         
         # traverse to the end of the list and add  new node
         current_node = self.head
@@ -82,6 +85,7 @@ class LinkedList:
 class Solution:
     def addTwoNumbers(self, l1: Optional[Node], l2: Optional[Node]) -> Optional[Node]:
         pass
+pass
 
 
 
@@ -89,3 +93,4 @@ class Solution:
 l1 = LinkedList([2,4,3])
 
 l1.print_list()
+# print(l1.head.data)
