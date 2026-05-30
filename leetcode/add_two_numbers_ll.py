@@ -57,7 +57,7 @@ class LinkedList:
     def create_linked_list_from_list(self):
         """Create a linked list from a list of ints"""
         # Create a ll
-        for item in self.mylist:
+        for item in reversed(self.mylist):
             self.append_node(item)
     
     def append_node(self, data):
@@ -91,6 +91,8 @@ pass
 
 # Test cases
 l1 = LinkedList([2,4,3])
+l2 = LinkedList([5,6,4])
 
 l1.print_list()
+l2.print_list()
 # print(l1.head.data)
